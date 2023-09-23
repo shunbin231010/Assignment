@@ -36,7 +36,7 @@
         android:layout_marginTop="77dp"
         app:layout_constraintStart_toStartOf="@+id/event_details"
         app:layout_constraintTop_toTopOf="@+id/event_details"
-        app:srcCompat="@android:drawable/ic_menu_myplaces" />
+        android:src="@drawable/baseline_people_24"/>
 
     <TextView
         android:id="@+id/event_joinpeople"
@@ -66,7 +66,7 @@
         android:layout_marginTop="108dp"
         app:layout_constraintStart_toStartOf="@+id/event_details"
         app:layout_constraintTop_toTopOf="@+id/event_details"
-        app:srcCompat="@android:drawable/ic_menu_my_calendar" />
+        android:src="@drawable/baseline_calendar_today_24"/>
 
     <TextView
         android:id="@+id/event_time"
@@ -106,7 +106,7 @@
         android:layout_marginTop="142dp"
         app:layout_constraintStart_toStartOf="@+id/event_details"
         app:layout_constraintTop_toTopOf="@+id/event_details"
-        app:srcCompat="@android:drawable/ic_menu_mylocation" />
+        android:src="@drawable/baseline_location_on_24"/>
 
     <TextView
         android:id="@+id/event_location"
@@ -136,7 +136,7 @@
         android:layout_marginTop="175dp"
         app:layout_constraintStart_toStartOf="@+id/event_details"
         app:layout_constraintTop_toTopOf="@+id/event_details"
-        app:srcCompat="@android:drawable/ic_menu_mapmode" />
+        android:src="@drawable/baseline_home_work_24"/>
 
     <TextView
         android:id="@+id/event_organization"
@@ -166,7 +166,7 @@
         android:layout_marginTop="204dp"
         app:layout_constraintStart_toStartOf="@+id/event_details"
         app:layout_constraintTop_toTopOf="@+id/event_details"
-        app:srcCompat="@android:drawable/ic_menu_view" />
+        android:src="@drawable/baseline_people_24"/>
 
     <TextView
         android:id="@+id/event_contactperson"
@@ -197,7 +197,7 @@
         android:layout_marginTop="234dp"
         app:layout_constraintStart_toStartOf="@+id/event_details"
         app:layout_constraintTop_toTopOf="@+id/event_details"
-        app:srcCompat="@android:drawable/ic_menu_call" />
+        android:src="@drawable/baseline_contact_phone_24"/>
 
     <TextView
         android:id="@+id/event_contactnumber"

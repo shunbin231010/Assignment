@@ -183,6 +183,8 @@
             android:layout_height="wrap_content"
             android:text="@string/bio"
             android:textSize="11sp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toStartOf="@+id/scrollview_fundraising_details"
             tools:layout_editor_absoluteX="132dp"
             tools:layout_editor_absoluteY="399dp" />
     </ScrollView>

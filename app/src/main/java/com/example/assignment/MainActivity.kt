@@ -28,26 +28,77 @@ import org.json.JSONObject
 
 class MainActivity : AppCompatActivity() {
 
-    private val URL :String = "http://192.168.0.19:8081/mobile/event.php"
+    private val URLEvent :String = "http://192.168.0.19:8081/mobile/event.php"
+    private val URLFun :String = "http://192.168.0.19:8081/mobile/fundraising.php"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         var buttonJoin : Button
+        var buttonDonate : Button
         buttonJoin = findViewById(R.id.test_btn)
+        buttonDonate = findViewById(R.id.fun_btn)
         buttonJoin.setOnClickListener { join() }
+        buttonDonate.setOnClickListener { donate() }
+
+
     }
 
-    private fun join(){
-        var errortxt : TextView
-        errortxt = findViewById(R.id.error)
+    private fun donate() {
         val textViewID : TextView
         textViewID = findViewById(R.id.event_id)
         val id = textViewID.text.toString().trim()
 
         val stringRequest: StringRequest = object : StringRequest(
-            com.android.volley.Request.Method.POST, URL,
+            com.android.volley.Request.Method.POST, URLFun,
+            Response.Listener { response ->
+                Log.d("res", response)
+                val jsonObject = JSONObject(response)
+                val message = jsonObject.getString("message")
+                if (message == "success") {
+                    val name = jsonObject.getString("name")
+                    val intent = Intent(this@MainActivity, FundraisingDetails::class.java)
+                    intent.putExtra("name",name)
+                    intent.putExtra("id",id)
+                    startActivity(intent)
+                    finish()
+                } else if (message == "failure") {
+                    Toast.makeText(
+                        this@MainActivity,
+                        "Invalid Id",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            },
+            Response.ErrorListener { error ->
+                Toast.makeText(
+                    this@MainActivity,
+                    error.toString().trim { it <= ' ' },
+                    Toast.LENGTH_SHORT
+                ).show()
+            }) {
+            @Throws(AuthFailureError::class)
+            override fun getParams(): Map<String, String>? {
+                val data: MutableMap<String, String> = HashMap()
+                data["id"] = id
+                return data
+            }
+        }
+        val requestQueue = Volley.newRequestQueue(applicationContext)
+        requestQueue.add(stringRequest)
+    }
+
+    private fun join(){
+        var errortxt : TextView
+        errortxt = findViewById(R.id.error)
+
+        val textViewID : TextView
+        textViewID = findViewById(R.id.event_id)
+        val id = textViewID.text.toString().trim()
+
+        val stringRequest: StringRequest = object : StringRequest(
+            com.android.volley.Request.Method.POST, URLEvent,
             Response.Listener { response ->
                 Log.d("res", response)
                 val jsonObject = JSONObject(response)

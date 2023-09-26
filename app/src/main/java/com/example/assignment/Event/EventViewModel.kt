@@ -1,4 +1,4 @@
-package com.example.assignment
+package com.example.assignment.Event
 
 import android.util.Log
 import androidx.lifecycle.LiveData
